@@ -59,19 +59,35 @@ function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, 
 }
 // Function to display the result in a web alert box
 function displayResult(result) {
+  const modal = document.getElementById("resultModal");
+  const modalText = document.getElementById("modalText");
+  const closeButton = document.querySelector(".close-button");
+
   if (result.bestCombination && result.bestComax) {
-    const wallHeight = parseFloat(document.getElementById('wallHeight').value); 
+    const wallHeight = parseFloat(document.getElementById("wallHeight").value);
 
     let message = `COMAX Type A ${result.bestComax.Attribute} peut être utilisé.\n`;
 
     if (wallHeight < 83) {
-      message += `1 x 83cm COMAX Type A ${result.bestComax.Attribute} peut être utilisé (à couper sur place).`; // Adjusted for natural phrasing
+      message += "1 COMAX de 83 cm peut être utilisé (à couper sur place)."; 
     } else {
       message += `La meilleure combinaison pour votre hauteur d'étage (${wallHeight} cm) est : ${result.bestCombination.num_125} COMAX de 125 cm, ${result.bestCombination.num_83} COMAX de 83 cm`;
     }
 
-    alert(message); // Displays the result in an alert box
+    modalText.textContent = message;
+    modal.style.display = "block"; // Show the modal
   } else {
-    alert("Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.");
+    modalText.textContent = "Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.";
+    modal.style.display = "block";
   }
+
+  closeButton.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 }
