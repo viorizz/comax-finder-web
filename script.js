@@ -65,7 +65,7 @@ function displayResult(result) {
     let message = `COMAX Type A ${result.bestComax.Attribute} peut être utilisé.\n`;
 
     if (wallHeight < 83) {
-      message += "1 COMAX de 83 cm peut être utilisé (à couper sur place)."; // Adjusted for natural phrasing
+      message += `1 x 83cm COMAX Type A ${result.bestComax.Attribute} peut être utilisé (à couper sur place).`; // Adjusted for natural phrasing
     } else {
       message += `La meilleure combinaison pour votre hauteur d'étage (${wallHeight} cm) est : ${result.bestCombination.num_125} COMAX de 125 cm, ${result.bestCombination.num_83} COMAX de 83 cm`;
     }
