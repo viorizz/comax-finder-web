@@ -75,6 +75,3 @@ function displayResult(result) {
     alert("Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.");
   }
 }
-
-    }
-  }
