@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>COMAX Finder</title>
+  <script src="script.js"></script>
+  <link rel=stylesheet src="./style.css"></link>
+</head>
+<body>
+  <h2>COMAX Finder</h2>
+  <form id="comaxForm">
+    Hauteur d'étage [cm]: <input type="number" id="wallHeight" required><br>
+    Ø d'armature [mm]: <input type="number" id="rebarDiameter" required><br>
+    Ecartement d'armature [mm]: <input type="number" id="rebarSpacing" required><br>
+    Epaisseur 1er mur coffré [mm]: <input type="number" id="w1Thickness" required><br>
+    Epaisseur 2ème mur coffré [mm]: <input type="number" id="w2Thickness" required><br>
+    <button type="submit">Rechercher</button>
+  </form>
+  <div id="result"></div>
+</body>
+</html>
