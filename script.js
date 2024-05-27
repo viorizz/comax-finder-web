@@ -61,11 +61,11 @@ function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, 
 function displayResult(result) {
   const modal = document.getElementById("resultModal");
   const modalText = document.getElementById("modalText");
+  const downloadLink = document.getElementById("downloadLink");
   const closeButton = document.querySelector(".close-button");
 
   if (result.bestCombination && result.bestComax) {
     const wallHeight = parseFloat(document.getElementById("wallHeight").value);
-
     let message = `COMAX Type A ${result.bestComax.Attribute} peut être utilisé.\n`;
 
     if (wallHeight < 83) {
@@ -75,10 +75,14 @@ function displayResult(result) {
     }
 
     modalText.textContent = message;
-    modal.style.display = "block"; // Show the modal
+
+    const dxfFileName = `/comax-type-a/A${result.bestComax.Attribute}.dwg`; 
+    downloadLink.href = dxfFileName; // Set the download link
+
+    modal.style.display = "block"; 
   } else {
     modalText.textContent = "Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.";
-    modal.style.display = "block";
+    modal.style.display = "block"; 
   }
 
   closeButton.onclick = function() {
