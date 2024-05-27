@@ -57,24 +57,24 @@ function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, 
 
   return { bestCombination, bestComax };
 }
-
-// Function to display the result in the HTML
+// Function to display the result in a web alert box
 function displayResult(result) {
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = ""; 
-  
-    if (result.bestCombination && result.bestComax) {
-      const wallHeight = parseFloat(document.getElementById('wallHeight').value); // Get the wallHeight value again
-  
-      if (wallHeight < 83) {
-        resultDiv.innerHTML = `<p>1 x 83cm COMAX Type A ${result.bestComax.Attribute} peut être utilisé (coupé sur place).</p>`;
-      } else {
-        resultDiv.innerHTML = `
-          <p>COMAX Type A ${result.bestComax.Attribute} peut être utilisé.</p>
-          <p>La meilleure combinaison pour votre hauteur d'étage (${wallHeight}cm) est: ${result.bestCombination.num_125} x 125cm COMAX Type A, ${result.bestCombination.num_83} x 83cm COMAX Type A</p>
-        `;
-      }
+  if (result.bestCombination && result.bestComax) {
+    const wallHeight = parseFloat(document.getElementById('wallHeight').value); 
+
+    let message = `COMAX Type A ${result.bestComax.Attribute} peut être utilisé.\n`;
+
+    if (wallHeight < 83) {
+      message += "1 COMAX de 83 cm peut être utilisé (à couper sur place)."; // Adjusted for natural phrasing
     } else {
-      resultDiv.innerHTML = "<p>Aucune combinaison COMAX appropriée n'a été trouvée. Veuillez vérifier vos valeurs.</p>";
+      message += `La meilleure combinaison pour votre hauteur d'étage (${wallHeight} cm) est : ${result.bestCombination.num_125} COMAX de 125 cm, ${result.bestCombination.num_83} COMAX de 83 cm`;
+    }
+
+    alert(message); // Displays the result in an alert box
+  } else {
+    alert("Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.");
+  }
+}
+
     }
   }
