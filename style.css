@@ -85,3 +85,7 @@ span {
 .download-button:hover {
   background-color: #45a049; /* Darker green on hover */
 }
+
+strong {
+  color: #45a049;
+}
