@@ -1,5 +1,6 @@
 body {
-    background: #5a5959;
+    padding-top: 10rem;
+    background: #121213;
     color: #fff;
     font-family: 'JetBrains Mono';
 }
@@ -27,6 +28,7 @@ input {
     font-family: 'JetBrains Mono';
     align-self: end;
     margin-left: 1rem;
+    color: black;
 }
 
 span {

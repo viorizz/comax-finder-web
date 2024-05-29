@@ -3,20 +3,12 @@
 <head>
   <title>COMAX Finder</title>
   <script src="script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./style.css">
   <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
 </head>
 <body>
-  <div class="container">
-    <h2>COMAX Finder</h2>
-    <form id="comaxForm">
-      Hauteur d'étage <span>[cm]</span>: <input type="number" id="wallHeight" required><br>
-      Ø d'armature <span>[mm]</span>: <input type="number" id="rebarDiameter" required><br>
-      Ecartement d'armature <span>[mm]</span>: <input type="number" id="rebarSpacing" required><br>
-      Epaisseur 1er mur coffré <span>[mm]</span>: <input type="number" id="w1Thickness" required><br>
-      Epaisseur 2ème mur coffré <span>[mm]</span>: <input type="number" id="w2Thickness" required><br>
-      <button type="submit">Rechercher</button>
-    </form>
+  <div class="flex w-full place-content-center">
     <div id="resultModal" class="modal">
       <div class="modal-content">
         <span class="close-button">&times;</span>
@@ -26,5 +18,81 @@
         </a>
       </div>
     </div>
+    <form id="comaxForm" class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md" data-v0-t="card">
+      <div class="flex flex-col space-y-1.5 p-6">
+        <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">COMAX</h3>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="wallHeight"
+          >
+            Hauteur d'étage <span>[cm]</span>
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input text-zinc-900 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            type="number" id="wallHeight" required
+            placeholder="254"
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="rebarDiameter"
+          >
+            Diamètre d'armature <span>[mm]</span>
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input text-zinc-900 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            type="number" id="rebarDiameter" required
+            placeholder="10"
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="rebarSpacing"
+          >
+            Espacement d'armature <span>[mm]</span>
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input text-zinc-900 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            type="number" id="rebarSpacing" required
+            placeholder="150"
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="w1Thickness"
+          >
+            Epaisseur du 1er mur coffré <span>[mm]</span>
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input text-zinc-900 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            type="number" id="w1Thickness" required
+            placeholder="200"
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="w2Thickness"
+          >
+            Epaisseur du 2ème mur coffré <span>[mm]</span>
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input text-zinc-900 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            type="number" id="w2Thickness" required
+            placeholder="200"
+          />
+        </div>
+        <button type="submit" class="flex h-10 w-full place-content-center hover:bg-gray-500 rounded-md border border-input bg-zinc-900 px-3 py-2 text-md font-bold ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+          Rechercher
+        </button>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
