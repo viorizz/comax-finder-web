@@ -1,12 +1,13 @@
+document.getElementById('comaxForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+});
+
 // Fetch COMAX data (replace with actual path)
 fetch('comax_data.json')
   .then(response => response.json())
   .then(data => {
     const comaxData = data.COMAX; // Assuming your JSON has an array named "COMAX"
-
-    document.getElementById('comaxForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-
+    
       // Get input values from the form
       const wallHeight = parseFloat(document.getElementById('wallHeight').value);
       const rebarDiameter = parseFloat(document.getElementById('rebarDiameter').value);
@@ -19,20 +20,19 @@ fetch('comax_data.json')
 
       // Display the result
       displayResult(result);
-    });
   });
 
 // Function to find the optimal COMAX combination
 function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, w2Thickness, comaxData) {
-  const validBoxes = comaxData.filter(box =>
-    box.Diameter >= rebarDiameter &&
-    box.E === rebarSpacing &&
-    box.W1_min <= w1Thickness && 
-    box.W1_max >= w1Thickness &&
-    box.W2_min <= w2Thickness &&
-    box.W2_max >= w2Thickness &&
-    box.p <= w1Thickness &&
-    box.b <= w1Thickness - 30
+  const validBoxes = comaxData.filter(({ Diameter, E, W1_min, W1_max, W2_min, W2_max, p, b }) =>
+    Diameter >= rebarDiameter &&
+    E === rebarSpacing &&
+    W1_min <= w1Thickness &&
+    W1_max >= w1Thickness &&
+    W2_min <= w2Thickness &&
+    W2_max >= w2Thickness &&
+    p <= w1Thickness &&
+    b <= w1Thickness - 30
   );
 
   if (validBoxes.length === 0) {
@@ -48,7 +48,7 @@ function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, 
     const num83 = Math.floor(remainingHeight / 83);
     const totalHeight = num125 * 125 + num83 * 83;
     const heightDiff = Math.abs(wallHeight - totalHeight);
-
+  
     if (heightDiff < closestHeightDiff) {
       closestHeightDiff = heightDiff;
       bestCombination = { num_125: num125, num_83: num83 };
@@ -84,14 +84,15 @@ function displayResult(result) {
     modalText.textContent = "Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.";
     modal.style.display = "block"; 
   }
-
-  closeButton.onclick = function() {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
 }
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+closeButton.onclick = closeModal;
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+};
