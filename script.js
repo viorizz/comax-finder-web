@@ -60,6 +60,7 @@ function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, 
   return { bestCombination, bestComax };
 }
 // Function to display the result in a web alert box
+// Function to display the result in a web alert box
 function displayResult(result) {
   const modal = document.getElementById("resultModal");
   const modalText = document.getElementById("modalText");
@@ -86,15 +87,11 @@ function displayResult(result) {
     modalText.textContent = "Aucune combinaison de COMAX trouvée. Veuillez vérifier vos valeurs.";
     modal.style.display = "block"; 
   }
+
+  closeButton.addEventListener('click', closeModal);
 }
 
 function closeModal() {
+  const modal = document.getElementById("resultModal");
   modal.style.display = "none";
 }
-
-closeButton.onclick = closeModal;
-window.onclick = function(event) {
-  if (event.target == modal) {
-    closeModal();
-  }
-};
