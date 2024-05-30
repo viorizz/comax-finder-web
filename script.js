@@ -1,26 +1,28 @@
-document.getElementById('comaxForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-});
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('comaxForm').addEventListener('submit', (event) => {
+    event.preventDefault();
 
-// Fetch COMAX data (replace with actual path)
-fetch('comax_data.json')
-  .then(response => response.json())
-  .then(data => {
-    const comaxData = data.COMAX; // Assuming your JSON has an array named "COMAX"
-    
-      // Get input values from the form
-      const wallHeight = parseFloat(document.getElementById('wallHeight').value);
-      const rebarDiameter = parseFloat(document.getElementById('rebarDiameter').value);
-      const rebarSpacing = parseFloat(document.getElementById('rebarSpacing').value);
-      const w1Thickness = parseFloat(document.getElementById('w1Thickness').value);
-      const w2Thickness = parseFloat(document.getElementById('w2Thickness').value);
+    // Fetch COMAX data (replace with actual path)
+    fetch('comax_data.json')
+      .then(response => response.json())
+      .then(data => {
+        const comaxData = data.COMAX; // Assuming your JSON has an array named "COMAX"
 
-      // Find the optimal COMAX combination
-      const result = findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, w2Thickness, comaxData);
+        // Get input values from the form
+        const wallHeight = parseFloat(document.getElementById('wallHeight').value);
+        const rebarDiameter = parseFloat(document.getElementById('rebarDiameter').value);
+        const rebarSpacing = parseFloat(document.getElementById('rebarSpacing').value);
+        const w1Thickness = parseFloat(document.getElementById('w1Thickness').value);
+        const w2Thickness = parseFloat(document.getElementById('w2Thickness').value);
 
-      // Display the result
-      displayResult(result);
+        // Find the optimal COMAX combination
+        const result = findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, w2Thickness, comaxData);
+
+        // Display the result
+        displayResult(result);
+      });
   });
+});
 
 // Function to find the optimal COMAX combination
 function findOptimalComax(wallHeight, rebarDiameter, rebarSpacing, w1Thickness, w2Thickness, comaxData) {
