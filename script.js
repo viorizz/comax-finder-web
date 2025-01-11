@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch COMAX data (replace with actual path)
     fetch('./comax_data.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         const comaxData = data.COMAX; // Assuming your JSON has an array named "COMAX"
 
