@@ -84,7 +84,7 @@ function displayResult(result) {
 
     modalText.textContent = message;
 
-    const dxfFileName = /comax-type-a/A${result.bestComax.Attribute}.dwg; 
+    const dxfFileName = `/comax-type-a/A${result.bestComax.Attribute}.dwg`;
     downloadLink.href = dxfFileName; // Set the download link
 
     modal.style.display = "block"; 
